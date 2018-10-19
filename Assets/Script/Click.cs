@@ -1,15 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
+// TODO: Clickってクラス名よくない。
+// 何をする役割なのか分かりやすい名詞表現で。
 public class Click : MonoBehaviour {
-    private int score;
+
+    // TODO: スコアどこに配置するのが適切か考える
+    // 別途スコア管理するやつ（べたな名前だとスコアマネージャー的な）が必要
+    private GameObject home;
+    private GameObject store;
     private Text scoretext;
+    private Player player;
 
     void Start()
     {
+        player = GameObject.Find("Player").GetComponent<Player>();
+        home = GameObject.Find("Canvas").transform.Find("Image_Home").gameObject;
+        store = GameObject.Find("Canvas").transform.Find("Image_Store").gameObject;
         scoretext = GameObject.Find("Text_Score").GetComponent<Text>();
-        scoretext.text = "0 G";
+        scoretext.text = player.score.ToString() + " User";
+        store.SetActive(false);
     }
 
     void Update ()
@@ -23,16 +33,22 @@ public class Click : MonoBehaviour {
     {
         if (transform.name == "Button_Increase")
         {
-            score += 1;
-            scoretext.text = score.ToString() + " G";
+            player.score += 1;
+            scoretext.text = player.score.ToString() + " User";
+        }
+        if (transform.name == "Button_Home")
+        {
+            home.SetActive(true);
+            store.SetActive(false);
         }
         if (transform.name == "Button_Store")
         {
-            SceneManager.LoadScene("");
+            home.SetActive(false);
+            store.SetActive(true);
         }
-        if (transform.name == "Button_Desktop")
+        if (transform.name == "Button_Settings")
         {
-            SceneManager.LoadScene("");
+
         }
     }
 }

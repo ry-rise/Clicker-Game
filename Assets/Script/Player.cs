@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour {
-    
-	void Start () {
+    public int score = 0;
+    void Start () {
 		
 	}
 	
