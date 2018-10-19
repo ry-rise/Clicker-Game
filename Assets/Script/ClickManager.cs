@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 // TODO: Clickってクラス名よくない。
 // 何をする役割なのか分かりやすい名詞表現で。
-public class Click : MonoBehaviour {
+public class ClickManager : MonoBehaviour {
 
     // TODO: スコアどこに配置するのが適切か考える
     // 別途スコア管理するやつ（べたな名前だとスコアマネージャー的な）が必要
