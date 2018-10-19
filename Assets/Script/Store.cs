@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
 public class Store : MonoBehaviour {
-    
-	void Start () {
-		
+    private GameObject[] products;
+
+    void Start () {
+        products = new GameObject[10];
 	}
 	
 	void Update () {

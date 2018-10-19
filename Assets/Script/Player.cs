@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public int score = 0;
+    public int Score { get; set; }
     void Start () {
 		
 	}

@@ -20,7 +20,7 @@ public class ClickManager : MonoBehaviour {
         store = GameObject.Find("Canvas").transform.Find("Image_Store").gameObject;
         settings = GameObject.Find("Canvas").transform.Find("Image_Settings").gameObject;
         scoretext = GameObject.Find("Text_Score").GetComponent<Text>();
-        scoretext.text = player.score.ToString() + " User";
+        scoretext.text = player.Score.ToString() + " User";
         store.SetActive(false);
         settings.SetActive(false);
     }
@@ -36,8 +36,8 @@ public class ClickManager : MonoBehaviour {
     {
         if (transform.name == "Button_Increase")
         {
-            player.score += 1;
-            scoretext.text = player.score.ToString() + " User";
+            player.Score += 1;
+            scoretext.text = player.Score.ToString() + " User";
         }
         if (transform.name == "Button_Home")
         {
