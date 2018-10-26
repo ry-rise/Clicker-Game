@@ -1,12 +1,6 @@
 ﻿using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public int Score { get; set; }
-    void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
+    public float Score { get; set; }
+    public int IncrementSecond { get; set; }
 }

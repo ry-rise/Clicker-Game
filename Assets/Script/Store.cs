@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Store : MonoBehaviour {
-    private GameObject[] products;
+    private UIManager iManager;
+    public int price { get; set; }
+    public int quantity { get; set; }
 
-    void Start () {
-        products = new GameObject[10];
+    void Start ()
+    {
+        iManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        price = int.Parse(iManager.priceText.text);
+        quantity = int.Parse(iManager.quantityText.text);
 	}
-	
-	void Update () {
-		
-	}
+    
 }
