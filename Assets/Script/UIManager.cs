@@ -10,28 +10,36 @@ public class UIManager : MonoBehaviour {
     private GameObject home;
     private GameObject store;
     private GameObject settings;
+    private GameObject upgrade;
     private GameObject products;
-    public Text scoreText { get; set; }
-    public Text priceText { get; set; }
-    public Text quantityText { get; set; }
+    public Text scoreText { get; private set; }
+    public Text priceText { get; private set; }
+    public Text quantityText { get; private set; }
+    public Text persecondText { get; private set; }
     private Player player;
     private Store storeSctipt;
 
     void Start()
     {
+        //Player
         player = GameObject.Find("Player").GetComponent<Player>();
+        //タブ
         home = GameObject.Find("Canvas").transform.Find("Image_Home").gameObject;
         store = GameObject.Find("Canvas").transform.Find("Image_Store").gameObject;
-        storeSctipt = store.GetComponent<Store>();
+        upgrade = GameObject.Find("Canvas").transform.Find("Image_Upgrade").gameObject;
         settings = GameObject.Find("Canvas").transform.Find("Image_Settings").gameObject;
+        storeSctipt = store.GetComponent<Store>();
         scoreText =GameObject.Find("Canvas").transform.Find("Image_Home/Text_Score").GetComponent<Text>();
         scoreText.text = player.Score.ToString() + " User";
         products = GameObject.Find("Canvas").transform.Find("Image_Store/Button_Item_1").gameObject;
         priceText = products.transform.Find("Price").GetComponent<Text>();
         quantityText = products.transform.Find("Quantity").GetComponent<Text>();
+        persecondText = home.transform.Find("Text_PerSecond").GetComponent<Text>();
+        persecondText.text = "PerSecond " + 0;
         home.SetActive(true);
         store.SetActive(false);
         settings.SetActive(false);
+        upgrade.SetActive(false);
     }
 
     void Update ()
@@ -53,30 +61,43 @@ public class UIManager : MonoBehaviour {
             home.SetActive(true);
             store.SetActive(false);
             settings.SetActive(false);
+            upgrade.SetActive(false);
         }
         if (transform.name == "Button_Store")
         {
             home.SetActive(false);
             store.SetActive(true);
             settings.SetActive(false);
+            upgrade.SetActive(false);
         }
         if (transform.name == "Button_Settings")
         {
             home.SetActive(false);
             store.SetActive(false);
             settings.SetActive(true);
+            upgrade.SetActive(false);
+        }
+        if (transform.name == "Button_Upgrade")
+        {
+            home.SetActive(false);
+            store.SetActive(false);
+            settings.SetActive(false);
+            upgrade.SetActive(true);
         }
         if (transform.name == "Button_Item_1")
         {
-            if (player.Score >=storeSctipt.price)
+            if (player.Score >= storeSctipt.price)
             {
                 player.Score -= storeSctipt.price;
                 storeSctipt.quantity += 1;
                 storeSctipt.price += 10;
+                player.IncrementSecond += 1;
                 scoreText.text = player.Score.ToString() + " User";
                 quantityText.text = storeSctipt.quantity.ToString();
                 priceText.text = storeSctipt.price.ToString();
+                persecondText.text = "PerSecond " + player.IncrementSecond.ToString();
             }
         }
     }
 }
+
