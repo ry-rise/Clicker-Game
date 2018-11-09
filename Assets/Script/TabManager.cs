@@ -1,25 +1,33 @@
 ﻿using UnityEngine;
 
 public class TabManager : MonoBehaviour {
-    private GameObject home;
-    private GameObject store;
-    private GameObject settings;
+    [SerializeField] private GameObject home;
+    [SerializeField] private GameObject store;
+    [SerializeField] private GameObject settings;
+    [SerializeField] private GameObject upgrade;
+    private GameObject oldTab = null;
+    private GameObject newTab;
 
     void Start ()
     {
-        //storeSctipt = store.GetComponent<Store>();
-        home.SetActive(true);
-        store.SetActive(false);
-        settings.SetActive(false);
+        newTab = home;
+        SetTab(newTab);
     }
-	
-	void Update ()
-    {
-		
-	}
 
     public void SetTab(GameObject newTab)
     {
-
+        if (oldTab == null)
+        {
+            newTab.SetActive(true);
+            oldTab = newTab;
+            newTab = null;
+        }
+        else
+        {
+            oldTab.SetActive(false);
+            newTab.SetActive(true);
+            oldTab = newTab;
+            newTab = null;
+        }
     }
 }

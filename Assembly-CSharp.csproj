@@ -64,8 +64,10 @@
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\Store.cs" />
+    <Compile Include="Assets\Script\TabButton.cs" />
     <Compile Include="Assets\Script\TabManager.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
+    <Compile Include="Assets\Script\Upgrade.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/VGA/Clicker Game/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

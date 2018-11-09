@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         iManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        player.IncrementSecond = 0;
+        player.TotalIncrementSecond = 0;
     }
     void Update ()
     {
@@ -17,8 +17,10 @@ public class GameManager : MonoBehaviour {
         time += Time.deltaTime;
         if (time >= 1.0f)
         {
-            player.Score += player.IncrementSecond;
-            iManager.scoreText.text = player.Score.ToString() + " User";
+            player.TotalIncrementSecond = player.Item1IncrementSecond * player.Item1Multiple;
+            player.Score += player.TotalIncrementSecond;
+            iManager.PersecondText.text ="PerSecond " +player.TotalIncrementSecond.ToString();
+            iManager.ScoreText.text = player.Score.ToString() + " User";
             time = 0;
         }
     }

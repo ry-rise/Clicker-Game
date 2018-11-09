@@ -7,39 +7,42 @@ public class UIManager : MonoBehaviour {
 
     // TODO: スコアどこに配置するのが適切か考える
     // 別途スコア管理するやつ（べたな名前だとスコアマネージャー的な）が必要
-    private GameObject home;
-    private GameObject store;
-    private GameObject settings;
-    private GameObject upgrade;
-    private GameObject products;
-    public Text scoreText { get; private set; }
-    public Text priceText { get; private set; }
-    public Text quantityText { get; private set; }
-    public Text persecondText { get; private set; }
+    [SerializeField] private GameObject home;
+    [SerializeField] private GameObject store;
+    [SerializeField] private GameObject settings;
+    [SerializeField] private GameObject upgrade;
+    private GameObject itemUpgrade;
+    private GameObject item;
+    public Text ScoreText { get; private set; }
+    public Text ItemPriceText { get; private set; }
+    public Text ItemQuantityText { get; private set; }
+    public Text UpgradePriceText { get; private set; }
+    public Text UpgradeMultipleText { get; private set; }
+    public Text PersecondText { get; private set; }
     private Player player;
-    private Store storeSctipt;
+    private Store storeScript;
+    private Upgrade upgradeScript;
 
     void Start()
     {
         //Player
         player = GameObject.Find("Player").GetComponent<Player>();
         //タブ
-        home = GameObject.Find("Canvas").transform.Find("Image_Home").gameObject;
-        store = GameObject.Find("Canvas").transform.Find("Image_Store").gameObject;
-        upgrade = GameObject.Find("Canvas").transform.Find("Image_Upgrade").gameObject;
-        settings = GameObject.Find("Canvas").transform.Find("Image_Settings").gameObject;
-        storeSctipt = store.GetComponent<Store>();
-        scoreText =GameObject.Find("Canvas").transform.Find("Image_Home/Text_Score").GetComponent<Text>();
-        scoreText.text = player.Score.ToString() + " User";
-        products = GameObject.Find("Canvas").transform.Find("Image_Store/Button_Item_1").gameObject;
-        priceText = products.transform.Find("Price").GetComponent<Text>();
-        quantityText = products.transform.Find("Quantity").GetComponent<Text>();
-        persecondText = home.transform.Find("Text_PerSecond").GetComponent<Text>();
-        persecondText.text = "PerSecond " + 0;
-        home.SetActive(true);
-        store.SetActive(false);
-        settings.SetActive(false);
-        upgrade.SetActive(false);
+        itemUpgrade=GameObject.Find("Canvas").transform.Find("Image_Upgrade/Button_ItemUpgrade_1").gameObject;
+        item = GameObject.Find("Canvas").transform.Find("Image_Store/Button_Item_1").gameObject;
+        storeScript = GameObject.Find("Canvas").transform.Find("Image_Store").GetComponent<Store>();
+        upgradeScript = GameObject.Find("Canvas").transform.Find("Image_Upgrade").GetComponent<Upgrade>();
+        //テキスト
+        ScoreText =GameObject.Find("Canvas").transform.Find("Image_Home/Text_Score").GetComponent<Text>();
+        ScoreText.text = player.Score.ToString() + " User";
+        ItemPriceText = item.transform.Find("Price").GetComponent<Text>();
+        ItemQuantityText = item.transform.Find("Quantity").GetComponent<Text>();
+        UpgradePriceText = itemUpgrade.transform.Find("Price").GetComponent<Text>();
+        PersecondText = GameObject.Find("Canvas").transform.Find("Image_Home/Text_PerSecond").GetComponent<Text>();
+        PersecondText.text = "PerSecond " + 0;
+        UpgradeMultipleText= itemUpgrade.transform.Find("Multiple").GetComponent<Text>();
+        UpgradeMultipleText.text = "1";
+
     }
 
     void Update ()
@@ -51,51 +54,41 @@ public class UIManager : MonoBehaviour {
 
     public void OnClick()
     {
+        //増えるボタンを押すと
         if (transform.name == "Button_Increase")
         {
             player.Score += 1;
-            scoreText.text = player.Score.ToString() + " User";
+            ScoreText.text = player.Score.ToString() + " User";
         }
-        if (transform.name == "Button_Home")
-        {
-            home.SetActive(true);
-            store.SetActive(false);
-            settings.SetActive(false);
-            upgrade.SetActive(false);
-        }
-        if (transform.name == "Button_Store")
-        {
-            home.SetActive(false);
-            store.SetActive(true);
-            settings.SetActive(false);
-            upgrade.SetActive(false);
-        }
-        if (transform.name == "Button_Settings")
-        {
-            home.SetActive(false);
-            store.SetActive(false);
-            settings.SetActive(true);
-            upgrade.SetActive(false);
-        }
-        if (transform.name == "Button_Upgrade")
-        {
-            home.SetActive(false);
-            store.SetActive(false);
-            settings.SetActive(false);
-            upgrade.SetActive(true);
-        }
+        //アイテムボタンを押すと
         if (transform.name == "Button_Item_1")
         {
-            if (player.Score >= storeSctipt.price)
+            if (player.Score >= storeScript.Price)
             {
-                player.Score -= storeSctipt.price;
-                storeSctipt.quantity += 1;
-                storeSctipt.price += 10;
-                player.IncrementSecond += 1;
-                scoreText.text = player.Score.ToString() + " User";
-                quantityText.text = storeSctipt.quantity.ToString();
-                priceText.text = storeSctipt.price.ToString();
-                persecondText.text = "PerSecond " + player.IncrementSecond.ToString();
+                //スコアから値段を引く
+                player.Score -= storeScript.Price;
+                //数を増やす
+                storeScript.Quantity += 1;
+                //値段を上げる
+                storeScript.Price += 10;
+                player.Item1IncrementSecond += 1;
+                ScoreText.text = player.Score.ToString() + " User";
+                ItemQuantityText.text = storeScript.Quantity.ToString();
+                ItemPriceText.text = storeScript.Price.ToString();
+                PersecondText.text = "PerSecond " + player.TotalIncrementSecond.ToString();
+            }
+        }
+        if (transform.name == "Button_ItemUpgrade_1")
+        {
+            if (player.Score >= upgradeScript.Price)
+            {
+                player.Score -= upgradeScript.Price;
+                upgradeScript.Price += 10;
+                //倍率を上げる
+                player.Item1Multiple += 1;
+                upgradeScript.Multiple += 1;
+                UpgradePriceText.text = upgradeScript.Price.ToString();
+                UpgradeMultipleText.text = "×" + upgradeScript.Multiple.ToString();
             }
         }
     }
