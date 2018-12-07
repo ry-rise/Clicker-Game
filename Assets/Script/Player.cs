@@ -11,6 +11,13 @@ public class Player : MonoBehaviour {
     public int Item1Multiple { get; set; }
     #endregion
 
+    #region Item2
+    //Item2の１秒間に増えるスコア
+    public int Item2IncrementSecond { get; set; }
+    //Item2の倍率
+    public int Item2Multiple { get; set; }
+    #endregion
+
     private void Start()
     {
         Item1Multiple = 1;

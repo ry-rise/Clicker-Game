@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour {
         storeScript = GameObject.Find("Canvas").transform.Find("Image_Store").GetComponent<Store>();
         upgradeScript = GameObject.Find("Canvas").transform.Find("Image_Upgrade").GetComponent<Upgrade>();
         //テキスト
-        ScoreText =GameObject.Find("Canvas").transform.Find("Image_Home/Text_Score").GetComponent<Text>();
+        ScoreText =GameObject.Find("Canvas").transform.Find("Header/Text_Score").GetComponent<Text>();
         ScoreText.text = player.Score.ToString() + " User";
         ItemPriceText = item.transform.Find("Price").GetComponent<Text>();
         ItemQuantityText = item.transform.Find("Quantity").GetComponent<Text>();
