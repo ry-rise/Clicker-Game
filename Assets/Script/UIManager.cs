@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour {
             ScoreText.text = player.Score.ToString() + " User";
         }
         //アイテムボタンを押すと
-        if (transform.name == "Button_Item_1")
+        if (buttonObject.name == "Button_Item_1")
         {
             if (player.Score >= storeScript.Price)
             {
@@ -78,7 +78,7 @@ public class UIManager : MonoBehaviour {
                 PersecondText.text = "PerSecond " + player.TotalIncrementSecond.ToString();
             }
         }
-        if (transform.name == "Button_ItemUpgrade_1")
+        if (buttonObject.name == "Button_ItemUpgrade_1")
         {
             if (player.Score >= upgradeScript.Price)
             {
