@@ -21,5 +21,6 @@ public class Player : MonoBehaviour {
     private void Start()
     {
         Item1Multiple = 1;
+        Item2Multiple = 1;
     }
 }

@@ -9,7 +9,7 @@ public class Store : MonoBehaviour {
     {
         Item = new GameObject[transform.childCount];
 
-        for (int i = 0; i < transform.childCount - 1; i += 1)
+        for (int i = 0; i < transform.childCount; i += 1)
         {
             Item[i] = transform.GetChild(i).GetComponent<GameObject>();
         }

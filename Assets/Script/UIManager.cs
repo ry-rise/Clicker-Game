@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private GameObject upgrade;
     private GameObject itemUpgrade;
     private GameObject item;
+    private GameObject canvas;
     public Text ScoreText { get; private set; }
     public Text ItemPriceText { get; private set; }
     public Text ItemQuantityText { get; private set; }
@@ -25,13 +26,15 @@ public class UIManager : MonoBehaviour {
 
     void Start()
     {
+        //Canvas
+        canvas = GameObject.Find("Canvas");
         //Player
         player = GameObject.Find("Player").GetComponent<Player>();
         //タブ
         itemUpgrade=GameObject.Find("Canvas").transform.Find("Image_Upgrade/Button_ItemUpgrade_1").gameObject;
         item = GameObject.Find("Canvas").transform.Find("Image_Store/Button_Item_1").gameObject;
-        storeScript = GameObject.Find("Canvas").transform.Find("Image_Store").GetComponent<Store>();
-        upgradeScript = GameObject.Find("Canvas").transform.Find("Image_Upgrade").GetComponent<Upgrade>();
+        storeScript = /*GameObject.Find("Canvas").transform.Find("Image_Store")*/store.GetComponent<Store>();
+        upgradeScript = /*GameObject.Find("Canvas").transform.Find("Image_Upgrade")*/upgrade.GetComponent<Upgrade>();
         //テキスト
         ScoreText =GameObject.Find("Canvas").transform.Find("Header/Text_Score").GetComponent<Text>();
         ScoreText.text = player.Score.ToString() + " User";
