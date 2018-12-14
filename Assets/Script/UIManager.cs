@@ -52,10 +52,10 @@ public class UIManager : MonoBehaviour {
         //scoretext.text = score.ToString() + " Byte";
 	}
 
-    public void OnClick()
+    public void OnClick(GameObject buttonObject)
     {
         //増えるボタンを押すと
-        if (transform.name == "Button_Increase")
+        if (buttonObject.name == "Button_Increase")
         {
             player.Score += 1;
             ScoreText.text = player.Score.ToString() + " User";
