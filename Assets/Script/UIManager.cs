@@ -13,7 +13,8 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private GameObject upgrade;
     private GameObject itemUpgrade;
     private GameObject item;
-    public Text ScoreText { get; private set; }
+    public Text UserText { get; private set; }
+    private Text MoneyText;
     public Text ItemPriceText { get; private set; }
     public Text ItemQuantityText { get; private set; }
     public Text UpgradePriceText { get; private set; }
@@ -23,7 +24,7 @@ public class UIManager : MonoBehaviour {
     private Store storeScript;
     private Upgrade upgradeScript;
 
-    void Start()
+    private void Start()
     {
         //Player
         player = GameObject.Find("Player").GetComponent<Player>();
@@ -33,8 +34,10 @@ public class UIManager : MonoBehaviour {
         storeScript = GameObject.Find("Canvas").transform.Find("Image_Store").GetComponent<Store>();
         upgradeScript = GameObject.Find("Canvas").transform.Find("Image_Upgrade").GetComponent<Upgrade>();
         //テキスト
-        ScoreText =GameObject.Find("Canvas").transform.Find("Header/Text_Score").GetComponent<Text>();
-        ScoreText.text = player.Score.ToString() + " User";
+        UserText =GameObject.Find("Canvas").transform.Find("Header/Text_User").GetComponent<Text>();
+        UserText.text = $"{player.Score.ToString()} User";
+        MoneyText = GameObject.Find("Canvas").transform.Find("Header/Text_Money").GetComponent<Text>();
+        MoneyText.text = $"¥ {player.Money.ToString()}";
         ItemPriceText = item.transform.Find("Price").GetComponent<Text>();
         ItemQuantityText = item.transform.Find("Quantity").GetComponent<Text>();
         UpgradePriceText = itemUpgrade.transform.Find("Price").GetComponent<Text>();
@@ -58,7 +61,7 @@ public class UIManager : MonoBehaviour {
         if (buttonObject.name == "Button_Increase")
         {
             player.Score += 1;
-            ScoreText.text = player.Score.ToString() + " User";
+            UserText.text = player.Score.ToString() + " User";
         }
         //アイテムボタンを押すと
         if (buttonObject.name == "Button_Item_1")
@@ -72,7 +75,7 @@ public class UIManager : MonoBehaviour {
                 //値段を上げる
                 storeScript.Price += 10;
                 player.Item1IncrementSecond += 1;
-                ScoreText.text = player.Score.ToString() + " User";
+                UserText.text = player.Score.ToString() + " User";
                 ItemQuantityText.text = storeScript.Quantity.ToString();
                 ItemPriceText.text = storeScript.Price.ToString();
                 PersecondText.text = "PerSecond " + player.TotalIncrementSecond.ToString();

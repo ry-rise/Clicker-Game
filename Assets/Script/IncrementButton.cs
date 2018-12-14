@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IncrementButton : MonoBehaviour {
     private UIManager iManager;
+    private int ID;
 
-	void Start () {
+	private void Start ()
+    {
         iManager = transform.root.gameObject.GetComponent<UIManager>();
 	}
-
     public void OnClick()
     {
         iManager.OnClick(gameObject);

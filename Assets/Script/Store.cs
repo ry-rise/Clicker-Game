@@ -5,7 +5,8 @@ public class Store : MonoBehaviour {
     public int Price { get; set; }
     public int Quantity { get; set; }
     GameObject[] Item;
-    void Start ()
+
+    private void Start ()
     {
         Item = new GameObject[transform.childCount];
 

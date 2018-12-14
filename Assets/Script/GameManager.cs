@@ -5,13 +5,13 @@ public class GameManager : MonoBehaviour {
     private UIManager iManager;
     private float time;
 
-	void Start ()
+	private void Start ()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         iManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         player.TotalIncrementSecond = 0;
     }
-    void Update ()
+    private void Update ()
     {
         //秒で増える
         time += Time.deltaTime;
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
             player.TotalIncrementSecond = player.Item1IncrementSecond * player.Item1Multiple;
             player.Score += player.TotalIncrementSecond;
             iManager.PersecondText.text ="PerSecond " +player.TotalIncrementSecond.ToString();
-            iManager.ScoreText.text = player.Score.ToString() + " User";
+            iManager.UserText.text = player.Score.ToString() + " User";
             time = 0;
         }
     }

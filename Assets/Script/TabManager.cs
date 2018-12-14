@@ -8,12 +8,11 @@ public class TabManager : MonoBehaviour {
     private GameObject oldTab = null;
     private GameObject newTab;
 
-    void Start ()
+    private void Start ()
     {
         newTab = home;
         SetTab(newTab);
     }
-
     public void SetTab(GameObject newTab)
     {
         if (oldTab == null)
