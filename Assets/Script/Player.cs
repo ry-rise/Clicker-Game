@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public int Score { get; set; }
+    public int User { get; set; }
     public int Money { get; set; }
     //１秒間に増える総合スコア
     public int TotalIncrementSecond { get; set; }

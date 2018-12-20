@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
         iManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         player.TotalIncrementSecond = 0;
     }
+
     private void Update ()
     {
         //秒で増える
@@ -18,9 +19,9 @@ public class GameManager : MonoBehaviour {
         if (time >= 1.0f)
         {
             player.TotalIncrementSecond = player.Item1IncrementSecond * player.Item1Multiple;
-            player.Score += player.TotalIncrementSecond;
-            iManager.PersecondText.text ="PerSecond " +player.TotalIncrementSecond.ToString();
-            iManager.UserText.text = player.Score.ToString() + " User";
+            player.Money += player.TotalIncrementSecond;
+            iManager.PersecondText.text =$"PerSecond { player.TotalIncrementSecond.ToString()}";
+            iManager.MoneyText.text = $"¥ {player.Money.ToString()}";
             time = 0;
         }
     }
