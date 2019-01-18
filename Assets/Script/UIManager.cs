@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject upgrade;
     private GameObject itemUpgrade;
     private GameObject item;
+    private GameObject canvas;
     public Text UserText { get; private set; }
     public Text MoneyText { get; private set; }
     public Text ItemPriceText { get; private set; }
@@ -27,10 +28,11 @@ public class UIManager : MonoBehaviour
     }
     private void GetGameObject()
     {
+        canvas = gameObject;
         //Player
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = gameObject.GetComponent<Player>();
         //タブ
-        itemUpgrade = GameObject.Find("Canvas").transform.Find("Image_Upgrade/Button_ItemUpgrade_1").gameObject;
+        itemUpgrade = /*GameObject.Find("Canvas")*/canvas.transform.Find("Image_Upgrade/Button_ItemUpgrade_1").gameObject;
         item = GameObject.Find("Canvas").transform.Find("Image_Store/Button_Item_1").gameObject;
         storeScript = GameObject.Find("Canvas").transform.Find("Image_Store").GetComponent<Store>();
         upgradeScript = GameObject.Find("Canvas").transform.Find("Image_Upgrade").GetComponent<Upgrade>();
