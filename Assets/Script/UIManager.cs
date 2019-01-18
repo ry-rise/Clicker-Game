@@ -9,7 +9,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject upgrade;
     private GameObject itemUpgrade;
     private GameObject item;
-    private GameObject canvas;
     public Text UserText { get; private set; }
     public Text MoneyText { get; private set; }
     public Text ItemPriceText { get; private set; }
@@ -28,21 +27,20 @@ public class UIManager : MonoBehaviour
     }
     private void GetGameObject()
     {
-        canvas = gameObject;
         //Player
         player = gameObject.GetComponent<Player>();
         //タブ
-        itemUpgrade = /*GameObject.Find("Canvas")*/canvas.transform.Find("Image_Upgrade/Button_ItemUpgrade_1").gameObject;
-        item = GameObject.Find("Canvas").transform.Find("Image_Store/Button_Item_1").gameObject;
-        storeScript = GameObject.Find("Canvas").transform.Find("Image_Store").GetComponent<Store>();
-        upgradeScript = GameObject.Find("Canvas").transform.Find("Image_Upgrade").GetComponent<Upgrade>();
+        itemUpgrade = gameObject.transform.Find("Image_Upgrade/Button_ItemUpgrade_1").gameObject;
+        item = gameObject.transform.Find("Image_Store/Button_Item_1").gameObject;
+        storeScript = gameObject.transform.Find("Image_Store").GetComponent<Store>();
+        upgradeScript = gameObject.transform.Find("Image_Upgrade").GetComponent<Upgrade>();
         //テキスト
-        UserText = GameObject.Find("Canvas").transform.Find("Header/Text_User").GetComponent<Text>();
-        MoneyText = GameObject.Find("Canvas").transform.Find("Header/Text_Money").GetComponent<Text>();
+        UserText = gameObject.transform.Find("Header/Text_User").GetComponent<Text>();
+        MoneyText = gameObject.transform.Find("Header/Text_Money").GetComponent<Text>();
+        PersecondText = gameObject.transform.Find("Image_Home/Text_PerSecond").GetComponent<Text>();
         ItemPriceText = item.transform.Find("Price").GetComponent<Text>();
         ItemQuantityText = item.transform.Find("Quantity").GetComponent<Text>();
         UpgradePriceText = itemUpgrade.transform.Find("Price").GetComponent<Text>();
-        PersecondText = GameObject.Find("Canvas").transform.Find("Image_Home/Text_PerSecond").GetComponent<Text>();
         UpgradeMultipleText = itemUpgrade.transform.Find("Multiple").GetComponent<Text>();
     }
     private void Initialize()
