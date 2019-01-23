@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public Text UpgradePriceText { get; private set; }
     public Text UpgradeMultipleText { get; private set; }
     public Text PersecondText { get; private set; }
+    private GameManager gameManager;
     private Player player;
     private Store storeScript;
     private Upgrade upgradeScript;
@@ -27,7 +28,7 @@ public class UIManager : MonoBehaviour
     }
     private void GetGameObject()
     {
-        //Player
+        gameManager = gameObject.GetComponent<GameManager>();
         player = gameObject.GetComponent<Player>();
         //タブ
         itemUpgrade = gameObject.transform.Find("Image_Upgrade/Button_ItemUpgrade_1").gameObject;
@@ -88,6 +89,12 @@ public class UIManager : MonoBehaviour
                 UpgradePriceText.text = upgradeScript.Price.ToString();
                 UpgradeMultipleText.text = $"×{upgradeScript.Multiple.ToString()}";
             }
+        }
+        //ランダムドロップを押すと
+        if (buttonObject.tag == "RandomDrop")
+        {
+            Destroy(buttonObject);
+            gameManager.isRandomDrop = false;
         }
     }
 }

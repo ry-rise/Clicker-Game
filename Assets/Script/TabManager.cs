@@ -29,4 +29,8 @@ public class TabManager : MonoBehaviour {
             newTab = null;
         }
     }
+    public GameObject GetTab()
+    {
+        return oldTab;
+    }
 }

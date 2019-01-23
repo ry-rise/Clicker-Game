@@ -3,6 +3,7 @@
 public class Player : MonoBehaviour {
     public int User { get; set; }
     public int Money { get; set; }
+    public int CumulativeMoney { get; set; }
     //１秒間に増える総合スコア
     public int TotalIncrementSecond { get; set; }
     #region Item1
