@@ -41,6 +41,19 @@ public class GameManager : MonoBehaviour
             time = 0;
         }
     }
+    public void OnClick(GameObject buttonObject)
+    {
+        if (buttonObject.name == "ButtonSave")
+        {
+            Debug.Log("SAVE_Settings");
+            DataSave();
+        }
+        if (buttonObject.name == "ButtonLoad")
+        {
+            Debug.Log("LOAD_Settings");
+            DataLoad();
+        }
+    }
     /// <summary>
     /// バックグラウンド判定
     /// </summary>
@@ -68,7 +81,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isRandomDrop)
         {
-            if (Random.Range(0, 10) == 0)
+            if (Random.Range(0, 100) == 0)
             {
                 GameObject obj = Instantiate(randomObject, transform);
                 obj.transform.SetParent(transform.Find("Image_Home"));
@@ -76,7 +89,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
 
     ///<summary>
     ///ファイルをセーブ

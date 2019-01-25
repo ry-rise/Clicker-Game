@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
         MoneyText = gameObject.transform.Find("Header/Text_Money").GetComponent<Text>();
         PersecondText = gameObject.transform.Find("Image_Home/Text_PerSecond").GetComponent<Text>();
         ItemPriceText = item.transform.Find("Price").GetComponent<Text>();
-        ItemQuantityText = item.transform.Find("Quantity").GetComponent<Text>();
+        ItemQuantityText = item.transform.Find("Quantity").GetComponentInChildren<Text>();
         UpgradePriceText = itemUpgrade.transform.Find("Price").GetComponent<Text>();
         UpgradeMultipleText = itemUpgrade.transform.Find("Multiple").GetComponent<Text>();
     }
@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
     {
         UserText.text = $"{player.User.ToString()} User";
         MoneyText.text = $"¥ {player.Money.ToString()}";
-        PersecondText.text = "PerSecond " + 0;
+        PersecondText.text = $"PerSecond {player.TotalIncrementSecond.ToString()}";
         UpgradeMultipleText.text = "1";
     }
     public void OnClick(GameObject buttonObject)
@@ -93,6 +93,7 @@ public class UIManager : MonoBehaviour
         //ランダムドロップを押すと
         if (buttonObject.tag == "RandomDrop")
         {
+            player.Money += 100;
             Destroy(buttonObject);
             gameManager.isRandomDrop = false;
         }

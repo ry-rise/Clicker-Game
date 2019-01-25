@@ -7,7 +7,7 @@ public class Upgrade : MonoBehaviour {
 
     private void Start()
     {
-        iManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        iManager = transform.root.gameObject.GetComponent<UIManager>();
         Price = int.Parse(iManager.UpgradePriceText.text);
         Multiple = int.Parse(iManager.UpgradeMultipleText.text);
     }

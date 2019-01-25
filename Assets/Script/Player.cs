@@ -21,8 +21,8 @@ public class Player : MonoBehaviour
     public int Item2Multiple { get; set; }
     #endregion
 
-    private void Start()
-    {
-        Item1Multiple = 1;
-    }
+    //private void Start()
+    //{
+    //    Item1Multiple = 1;
+    //}
 }

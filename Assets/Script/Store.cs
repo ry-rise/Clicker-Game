@@ -16,10 +16,12 @@ public class Store : MonoBehaviour
             Item[i] = transform.GetChild(i).GetComponent<GameObject>();
         }
         
-        iManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        //for(int i=0;i<transform.childCount)
-        Price = int.Parse(iManager.ItemPriceText.text);
-        Quantity = int.Parse(iManager.ItemQuantityText.text);
+        iManager = transform.root.gameObject.GetComponent<UIManager>();
+        //for (int i = 0; i < transform.childCount - 1; i += 1)
+        {
+            Price = int.Parse(iManager.ItemPriceText.text);
+            Quantity = int.Parse(iManager.ItemQuantityText.text);
+        }
 	}
     
 }

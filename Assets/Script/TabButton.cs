@@ -7,10 +7,11 @@ public class TabButton : MonoBehaviour
 
     private void Start()
     {
-        tabManager =transform.root.gameObject.GetComponent<TabManager>();
+        tabManager = transform.root.gameObject.GetComponent<TabManager>();
     }
     public void OnClick()
     {
         tabManager.SetTab(holdObject);
+        tabManager.SetColor(gameObject);
     }
 }
