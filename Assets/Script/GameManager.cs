@@ -15,10 +15,14 @@ public class GameManager : MonoBehaviour
     {
         player = gameObject.GetComponent<Player>();
         iManager = gameObject.GetComponent<UIManager>();
-        if (File.Exists($"{Application.persistentDataPath}{FileName}"))
+        if (File.Exists($"{Application.persistentDataPath}{FileName}") == true)
         {
             Debug.Log("LOAD");
             DataLoad();
+        }
+        else
+        {
+            Debug.LogWarning("Data Not Found");
         }
     }
 

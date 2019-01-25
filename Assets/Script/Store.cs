@@ -17,6 +17,7 @@ public class Store : MonoBehaviour
         }
         
         iManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        //for(int i=0;i<transform.childCount)
         Price = int.Parse(iManager.ItemPriceText.text);
         Quantity = int.Parse(iManager.ItemQuantityText.text);
 	}
