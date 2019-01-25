@@ -1,22 +1,25 @@
 ﻿using System.IO;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
     private Player player;
     private UIManager iManager;
+    private readonly string FileName = "//SaveData.json";
     private float time;
     public bool isRandomDrop = false;
     [SerializeField] private GameObject randomObject;
 
-    private void Awake()
-    {
-        DataLoad();
-    }
-    private void Start ()
+    private void Awake ()
     {
         player = gameObject.GetComponent<Player>();
         iManager = gameObject.GetComponent<UIManager>();
-        //player.TotalIncrementSecond = 0;
+        if (File.Exists($"{Application.persistentDataPath}{FileName}"))
+        {
+            Debug.Log("LOAD");
+            DataLoad();
+        }
     }
 
     private void Update ()
@@ -40,17 +43,15 @@ public class GameManager : MonoBehaviour {
     /// <param name="pause"></param>
     private void OnApplicationPause(bool pause)
     {
-        if(pause==true)
+        if (pause == true)
         {
             Debug.Log("SAVE");
             DataSave();
         }
-        else
-        {
-
-        }
     }
-
+    /// <summary>
+    /// アプリ終了時に呼び出し
+    /// </summary>
     private void OnApplicationQuit()
     {
         Debug.Log("SAVE");
@@ -72,28 +73,34 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+
     ///<summary>
     ///ファイルをセーブ
     ///</summary>
     private void DataSave()
     {
-        var data = new GameData() { User = player.User, Money = player.Money,
-                                    CumulativeMoney=player.CumulativeMoney,TotalIncrementSecond=player.TotalIncrementSecond};
-        var json = JsonUtility.ToJson(data);//Jsonデータ
-
-        var path = $"{Application.persistentDataPath}\\data.json";
-        File.WriteAllText(path, json);//保存
-
-        //json = File.ReadAllText(path);//読み込み
-        //var data2 = JsonUtility.FromJson<GameData>(json);//復元データ
+        GameData data = new GameData()
+        {
+            User = player.User,
+            Money = player.Money,
+            CumulativeMoney = player.CumulativeMoney,
+            TotalIncrementSecond = player.TotalIncrementSecond,
+        };
+        string json = JsonUtility.ToJson(data); //Jsonデータ
+        string path = $"{Application.persistentDataPath}{FileName}";
+        File.WriteAllText(path, json); //保存
     }
     ///<summary>
     ///ファイルをロード
     ///</summary>
     private void DataLoad()
     {
-        var path = $"{Application.persistentDataPath}\\data.json";
-        var json = File.ReadAllText(path);//読み込み
-        var data2 = JsonUtility.FromJson<GameData>(json);//復元データ
+        string path = $"{Application.persistentDataPath}{FileName}";
+        string json = File.ReadAllText(path);//読み込み
+        GameData restoreData = JsonUtility.FromJson<GameData>(json);//復元データ
+        player.User = restoreData.User;
+        player.Money = restoreData.Money;
+        player.CumulativeMoney = restoreData.CumulativeMoney;
+        player.TotalIncrementSecond = restoreData.TotalIncrementSecond;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
     public int User { get; set; }
     public int Money { get; set; }
     public int CumulativeMoney { get; set; }

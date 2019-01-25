@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class IncrementButton : MonoBehaviour {
+public class IncrementButton : MonoBehaviour
+{
     private UIManager iManager;
     private int ID;
 

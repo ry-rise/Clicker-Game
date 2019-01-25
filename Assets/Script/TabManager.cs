@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class TabManager : MonoBehaviour {
+public class TabManager : MonoBehaviour
+{
     [SerializeField] private GameObject home;
     [SerializeField] private GameObject store;
     [SerializeField] private GameObject settings;
