@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 
 public class SettingButton : MonoBehaviour {
-    private GameManager gameManager;
+    private Settings settings;
 
 	private void Start ()
     {
-        gameManager = transform.root.gameObject.GetComponent<GameManager>();
+        settings = transform.parent.gameObject.GetComponent<Settings>();
 	}
 
     public void OnClick()
     {
-        gameManager.OnClick(gameObject);
+        settings.OnClick(gameObject);
     }
 	
 	

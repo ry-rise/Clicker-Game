@@ -41,19 +41,7 @@ public class GameManager : MonoBehaviour
             time = 0;
         }
     }
-    public void OnClick(GameObject buttonObject)
-    {
-        if (buttonObject.name == "ButtonSave")
-        {
-            Debug.Log("SAVE_Settings");
-            DataSave();
-        }
-        if (buttonObject.name == "ButtonLoad")
-        {
-            Debug.Log("LOAD_Settings");
-            DataLoad();
-        }
-    }
+    
     /// <summary>
     /// バックグラウンド判定
     /// </summary>
@@ -62,7 +50,7 @@ public class GameManager : MonoBehaviour
     {
         if (pause == true)
         {
-            Debug.Log("SAVE");
+            Debug.Log("SAVE_Background");
             DataSave();
         }
     }
@@ -93,7 +81,7 @@ public class GameManager : MonoBehaviour
     ///<summary>
     ///ファイルをセーブ
     ///</summary>
-    private void DataSave()
+    public void DataSave()
     {
         GameData data = new GameData()
         {
@@ -109,7 +97,7 @@ public class GameManager : MonoBehaviour
     ///<summary>
     ///ファイルをロード
     ///</summary>
-    private void DataLoad()
+    public void DataLoad()
     {
         string path = $"{Application.persistentDataPath}{FileName}";
         string json = File.ReadAllText(path);//読み込み
