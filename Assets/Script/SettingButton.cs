@@ -3,7 +3,7 @@
 public class SettingButton : MonoBehaviour {
     private Settings settings;
 
-	private void Start ()
+	private void Awake ()
     {
         settings = transform.parent.gameObject.GetComponent<Settings>();
 	}
@@ -11,7 +11,5 @@ public class SettingButton : MonoBehaviour {
     public void OnClick()
     {
         settings.OnClick(gameObject);
-    }
-	
-	
+    }	
 }

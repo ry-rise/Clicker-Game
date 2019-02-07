@@ -5,7 +5,7 @@ public class TabButton : MonoBehaviour
     [SerializeField] private GameObject holdObject;
     private TabManager tabManager;
 
-    private void Start()
+    private void Awake()
     {
         tabManager = transform.root.gameObject.GetComponent<TabManager>();
     }
