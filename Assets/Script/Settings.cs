@@ -22,5 +22,9 @@ public class Settings : MonoBehaviour
             Debug.Log("LOAD_Settings");
             gameManager.DataLoad();
         }
+        if(buttonObject.name=="ButtonDelete")
+        {
+            Debug.Log("Delete");
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -41,8 +42,15 @@ public class Player : MonoBehaviour
     //Item2の倍率
     public int Item5Multiple { get; set; }
     #endregion
-    //private void Start()
-    //{
-    //    Item1Multiple = 1;
-    //}
+    private void Start()
+    {
+        if (File.Exists($"{Application.persistentDataPath}{GameManager.FileName}")==false)
+        {
+            Item1Multiple = 1;
+            Item2Multiple = 1;
+            Item3Multiple = 1;
+            Item4Multiple = 1;
+            Item5Multiple = 1;
+        }
+    }
 }
