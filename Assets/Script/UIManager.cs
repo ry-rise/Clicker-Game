@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,48 +39,21 @@ public class UIManager : MonoBehaviour
         gameManager = gameObject.GetComponent<GameManager>();
         player = gameObject.GetComponent<Player>();
         //タブ
-
         storeScript = gameObject.transform.Find("Image_Store").GetComponent<Store>();
         upgradeScript = gameObject.transform.Find("Image_Upgrade").GetComponent<Upgrade>();
         //テキスト
         UserText = gameObject.transform.Find("Header/Text_User").GetComponent<Text>();
         MoneyText = gameObject.transform.Find("Header/Text_Money").GetComponent<Text>();
         PersecondText = gameObject.transform.Find("Image_Home/Text_PerSecond").GetComponent<Text>();
-        itemUpgrade[0] = gameObject.transform.Find("Image_Upgrade/Button_ItemUpgrade_1").gameObject;
-        item[0] = gameObject.transform.Find("Image_Store/Button_Item_1").gameObject;
-        itemUpgrade[1] = gameObject.transform.Find("Image_Upgrade/Button_ItemUpgrade_2").gameObject;
-        item[1] = gameObject.transform.Find("Image_Store/Button_Item_2").gameObject;
-        itemUpgrade[2] = gameObject.transform.Find("Image_Upgrade/Button_ItemUpgrade_3").gameObject;
-        item[2] = gameObject.transform.Find("Image_Store/Button_Item_3").gameObject;
-        itemUpgrade[3] = gameObject.transform.Find("Image_Upgrade/Button_ItemUpgrade_4").gameObject;
-        item[3] = gameObject.transform.Find("Image_Store/Button_Item_4").gameObject;
-        itemUpgrade[4] = gameObject.transform.Find("Image_Upgrade/Button_ItemUpgrade_5").gameObject;
-        item[4] = gameObject.transform.Find("Image_Store/Button_Item_5").gameObject;
-
+        foreach(var i in Enumerable.Range(0,5))
         {
-            ItemPriceText[0] = item[0].transform.Find("Price").gameObject.GetComponent<Text>();
-            ItemQuantityText[0] = item[0].transform.Find("Quantity").GetComponentInChildren<Text>();
-            UpgradePriceText[0] = itemUpgrade[0].transform.Find("Price").GetComponent<Text>();
-            UpgradeMultipleText[0] = itemUpgrade[0].transform.Find("Multiple").GetComponent<Text>();
-            ItemPriceText[1] = item[1].transform.Find("Price").GetComponent<Text>();
-            ItemQuantityText[1] = item[1].transform.Find("Quantity").GetComponentInChildren<Text>();
-            UpgradePriceText[1] = itemUpgrade[1].transform.Find("Price").GetComponent<Text>();
-            UpgradeMultipleText[1] = itemUpgrade[1].transform.Find("Multiple").GetComponent<Text>();
-            ItemPriceText[2] = item[2].transform.Find("Price").GetComponent<Text>();
-            ItemQuantityText[2] = item[2].transform.Find("Quantity").GetComponentInChildren<Text>();
-            UpgradePriceText[2] = itemUpgrade[2].transform.Find("Price").GetComponent<Text>();
-            UpgradeMultipleText[2] = itemUpgrade[2].transform.Find("Multiple").GetComponent<Text>();
-            ItemPriceText[3] = item[3].transform.Find("Price").GetComponent<Text>();
-            ItemQuantityText[3] = item[3].transform.Find("Quantity").GetComponentInChildren<Text>();
-            UpgradePriceText[3] = itemUpgrade[3].transform.Find("Price").GetComponent<Text>();
-            UpgradeMultipleText[3] = itemUpgrade[3].transform.Find("Multiple").GetComponent<Text>();
-            ItemPriceText[4] = item[4].transform.Find("Price").GetComponent<Text>();
-            ItemQuantityText[4] = item[4].transform.Find("Quantity").GetComponentInChildren<Text>();
-            UpgradePriceText[4] = itemUpgrade[4].transform.Find("Price").GetComponent<Text>();
-            UpgradeMultipleText[4] = itemUpgrade[4].transform.Find("Multiple").GetComponent<Text>();
-
+            item[i] = gameObject.transform.Find($"Image_Store/Button_Item_{i + 1}").gameObject;
+            itemUpgrade[i] = gameObject.transform.Find($"Image_Upgrade/Button_ItemUpgrade_{i+1}").gameObject;
+            ItemPriceText[i] = item[i].transform.Find("Price").gameObject.GetComponent<Text>();
+            ItemQuantityText[i] = item[i].transform.Find("Quantity").GetComponentInChildren<Text>();
+            UpgradePriceText[i] = itemUpgrade[i].transform.Find("Price").GetComponent<Text>();
+            UpgradeMultipleText[i] = itemUpgrade[i].transform.Find("Multiple").GetComponent<Text>();
         }
-
     }
     private void Initialize()
     {
@@ -87,7 +61,6 @@ public class UIManager : MonoBehaviour
         UserText.text = $"{player.User.ToString()} User";
         MoneyText.text = $"¥ {player.Money.ToString()}";
         PersecondText.text = $"PerSecond {player.TotalIncrementSecond.ToString()}";
-        //Debug.Log(upgradeScript.Price[0]);
         //UpgradePriceText[0].text = $"¥ {upgradeScript.Price[0].ToString()}";
         //UpgradePriceText[1].text = $"¥ {upgradeScript.Price[1].ToString()}";
         //UpgradePriceText[2].text = $"¥ {upgradeScript.Price[2].ToString()}";
